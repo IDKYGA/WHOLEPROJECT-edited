@@ -27,6 +27,7 @@ public class PatientMain extends AppCompatActivity
         setSupportActionBar(toolbar);
         tabLayout = (TabLayout)findViewById(R.id.tabLayout);
         viewPager = (ViewPager)findViewById(R.id.viewPager);
+
         patientViewAdapt = new PatientViewAdapt(getSupportFragmentManager());
         patientViewAdapt.addFragments(new PatientCurrentFragment(), "Current");
         //patientViewAdapt.addFragments(new PatientCalendarFragment(), "Calendar");

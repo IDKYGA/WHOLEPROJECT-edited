@@ -33,6 +33,16 @@ public class PatientViewAdapt extends FragmentPagerAdapter
     @Override
     public Fragment getItem(int position)
     {
+
+        Fragment fragment = null;
+        if(position==0){
+            fragment = new PatientCurrentFragment();
+        }
+        if(position==1){
+            fragment = new PatientCalendarFragment();
+        }
+
+
         return fragments.get(position);
     }
 
