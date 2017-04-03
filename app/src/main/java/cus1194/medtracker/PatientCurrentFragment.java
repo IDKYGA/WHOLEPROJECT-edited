@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
+import android.widget.TextView;
 
 import java.util.HashMap;
 import java.util.List;
@@ -16,8 +17,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PatientCurrentFragment extends Fragment
-{
+public class PatientCurrentFragment extends Fragment {
 
     private ExpandableListView listView;
     private ExpandableListAdapter listAdapter;
@@ -30,28 +30,29 @@ public class PatientCurrentFragment extends Fragment
     }
 
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+         //Inflate the layout for this fragment
         v = inflater.inflate(R.layout.fragment_current, container, false);
         return v;
     }
 
     EditText bp;
     EditText w;
-    ExpandableListView elv;
 
+
+    @Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
 
-
         bp = (EditText)v.findViewById(R.id.bloodPressureEdit);
         w = (EditText)v.findViewById(R.id.weightEdit);
-        ExpandableListView elv = (ExpandableListView)v.findViewById(R.id.medicationList);
+        listView = (ExpandableListView)v.findViewById(R.id.medicationList);
 
-        elv.setAdapter(listAdapter);
+        listView.setAdapter(listAdapter);
 
         bp.setOnClickListener(new View.OnClickListener()
         {
@@ -68,6 +69,16 @@ public class PatientCurrentFragment extends Fragment
             }
         });
 
+    }
+
+    TextView back = (TextView)v.findViewById(R.id.back);
+
+    public void onClick(View view)
+    {
+        if(view == back)
+        {
+            
+        }
     }
 
 

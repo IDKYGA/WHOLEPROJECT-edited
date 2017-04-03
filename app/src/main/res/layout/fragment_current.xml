@@ -5,6 +5,17 @@
     tools:context="cus1194.medtracker.PatientCurrentFragment">
 
     <!-- TODO: Update blank fragment layout -->
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="BACK"
+        android:textSize="15dp"
+        android:layout_gravity="end"
+        android:textAlignment="textEnd"
+        android:id="@+id/back"
+        />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

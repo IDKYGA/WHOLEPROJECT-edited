@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.HashMap;
@@ -83,10 +84,24 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter
         if (view==null)
         {
             LayoutInflater inflater = (LayoutInflater)this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.fragment_current_listgroup,null);
+            view = inflater.inflate(R.layout.fragment_current_listitem,null);
         }
-        TextView lbListChild = (TextView)view.findViewById(R.id.lbListItem);
-        lbListChild.setText(childText);
+        TextView MedName = (TextView)view.findViewById(R.id.textView1);
+        MedName.setText("Medication Name: ");
+
+        TextView MedID = (TextView)view.findViewById(R.id.textView2);
+        MedID.setText("Medication ID/Code: ");
+
+        TextView Nurse = (TextView)view.findViewById(R.id.textView3);
+        Nurse.setText("Nurse: ");
+
+        EditText EditName = (EditText)view.findViewById(R.id.editView1);
+        String input = EditName.getText().toString();
+        if(null!=input && input.length()>0)
+        {
+            status.add(input);
+        }
+
         return view;
     }
 

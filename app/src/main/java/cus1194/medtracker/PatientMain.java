@@ -23,19 +23,21 @@ public class PatientMain extends AppCompatActivity
 
         super.onCreate(savedIntanceState);
         setContentView(R.layout.patient_main);
+
         toolbar = (Toolbar)findViewById(R.id.toolBar);
-        setSupportActionBar(toolbar);
+            setSupportActionBar(toolbar);
         tabLayout = (TabLayout)findViewById(R.id.tabLayout);
         viewPager = (ViewPager)findViewById(R.id.viewPager);
 
         patientViewAdapt = new PatientViewAdapt(getSupportFragmentManager());
+
         patientViewAdapt.addFragments(new PatientCurrentFragment(), "Current");
-        //patientViewAdapt.addFragments(new PatientCalendarFragment(), "Calendar");
-        //viewPager.setAdapter(patientViewAdapt);
-        //tabLayout.setupWithViewPager(viewPager);
+        patientViewAdapt.addFragments(new PatientCalendarFragment(), "Calendar");
+        viewPager.setAdapter(patientViewAdapt);
+        tabLayout.setupWithViewPager(viewPager);
 
 
-    }
+    };
 
 
 }
