@@ -21,6 +21,7 @@
         <activity android:name=".PatientMain"></activity>
         <activity android:name=".LoginActivity"></activity>
         <activity android:name=".ProfileActivity"></activity>
+        <activity android:name=".AddMed"></activity>
 
 
 

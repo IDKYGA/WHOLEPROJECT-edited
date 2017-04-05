@@ -9,6 +9,11 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.HashMap;
 import java.util.List;
 
@@ -22,6 +27,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter
     private Context context;
     private List<String> status;
     private HashMap<String,List<String>> medications;
+    private FirebaseAuth firebaseAuth;
+    private DatabaseReference databaseReference;
 
     public ExpandableListAdapter(Context context, List<String> listDataHeader, HashMap<String, List<String>> listHashMap) {
         this.context = context;
@@ -81,26 +88,34 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter
     @Override
     public View getChildView(int i, int j, boolean b, View view, ViewGroup viewGroup) {
         final String childText = (String)getChild(i,j);
+        firebaseAuth = FirebaseAuth.getInstance();
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+
         if (view==null)
         {
             LayoutInflater inflater = (LayoutInflater)this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.fragment_current_listitem,null);
         }
         TextView MedName = (TextView)view.findViewById(R.id.textView1);
-        MedName.setText("Medication Name: ");
 
-        TextView MedID = (TextView)view.findViewById(R.id.textView2);
-        MedID.setText("Medication ID/Code: ");
+        EditText edName = (EditText)view.findViewById(R.id.editView1);
+        EditText edID = (EditText)view.findViewById(R.id.editView2);
+        EditText edNurse = (EditText)view.findViewById(R.id.editView3);
 
-        TextView Nurse = (TextView)view.findViewById(R.id.textView3);
-        Nurse.setText("Nurse: ");
+        String npName = edNurse.getText().toString().trim();
+        NursePhyInfo NPInfo = new NursePhyInfo(npName);
+        FirebaseUser newNP = firebaseAuth.getCurrentUser();
 
-        EditText EditName = (EditText)view.findViewById(R.id.editView1);
-        String input = EditName.getText().toString();
-        if(null!=input && input.length()>0)
-        {
-            status.add(input);
-        }
+        String name = edName.getText().toString().trim();
+        String id = edID.getText().toString().trim();
+
+        MedInfo MedInfo = new MedInfo(name, id);
+        FirebaseUser newMed = firebaseAuth.getCurrentUser();
+
+        databaseReference.child(newMed.getUid()).setValue(MedInfo);
+        databaseReference.child(newNP.getUid()).setValue(NPInfo);
+
+        MedName.setText(childText);
 
         return view;
     }

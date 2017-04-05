@@ -22,4 +22,6 @@ public class Userinformation{
             this.postiion = postiion;
             this.NPI = NPI;
         }
+
+
 }
